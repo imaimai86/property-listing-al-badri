@@ -64,6 +64,48 @@ window.initHeader = function() {
         }
     });
 
+    // Helper function to close mobile menu
+    const closeMobileMenu = () => {
+        const nav = document.querySelector('.nav');
+        const menuIcon = document.querySelector('.mobile-menu-icon');
+        if (nav && nav.classList.contains('open')) {
+            nav.classList.remove('open');
+            if (menuIcon) {
+                const icon = menuIcon.querySelector('ion-icon');
+                if (icon) icon.setAttribute('name', 'menu-outline');
+            }
+        }
+    };
+
+    // Close menu when ANY nav link is clicked/touched (handles iOS)
+    // This is separate from smooth scrolling to ensure menu closes on all devices
+    const navLinks = document.querySelectorAll('.nav a, .nav .nav-link');
+    navLinks.forEach(link => {
+        // Skip links that are dropdown toggles (have dropdown-menu sibling)
+        const parentItem = link.closest('.nav-item');
+        const hasDropdown = parentItem && parentItem.querySelector('.dropdown-menu');
+        const isDropdownToggleIcon = link.querySelector('ion-icon[name*="chevron"]');
+        
+        // Only add close handler if this isn't a dropdown toggle
+        if (!isDropdownToggleIcon) {
+            // Use touchstart for iOS (fires before click)
+            link.addEventListener('touchstart', function(e) {
+                // Only on mobile viewport
+                if (window.innerWidth <= 768) {
+                    // Small delay to allow the touch to register as a click
+                    setTimeout(closeMobileMenu, 100);
+                }
+            }, { passive: true });
+            
+            // Also add click for desktop mobile emulators
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    closeMobileMenu();
+                }
+            });
+        }
+    });
+
     // Smooth Scrolling for Anchors (re-bind)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -78,18 +120,13 @@ window.initHeader = function() {
             
             e.preventDefault();
             
+            // Close mobile menu (redundant but ensures it's closed)
+            closeMobileMenu();
+            
             try {
                 const targetElement = document.querySelector(targetId);
-                const nav = document.querySelector('.nav');
-                const menuIcon = document.querySelector('.mobile-menu-icon');
 
                 if (targetElement) {
-                    // Close mobile menu if open
-                    if (nav && nav.classList.contains('open')) {
-                        nav.classList.remove('open');
-                        if (menuIcon) menuIcon.querySelector('ion-icon').setAttribute('name', 'menu-outline');
-                    }
-
                     // Get current header height which might change
                     const headerHeight = document.querySelector('.header').classList.contains('scrolled') ? 80 : 100;
                     
