@@ -609,6 +609,7 @@ img {
         padding: 20px;
         box-shadow: var(--shadow-sm);
         flex-direction: column;
+        z-index: 1001; /* Ensure menu is above page content */
     }
     
     .nav.open {
