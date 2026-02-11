@@ -1,0 +1,61 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e5]:
+  - generic:
+    - generic:
+      - generic:
+        - link "(tabs), back" [ref=e7] [cursor=pointer]:
+          - /url: /
+        - heading "property/edit" [level=1] [ref=e10]
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - img [ref=e16] [cursor=pointer]
+      - generic [ref=e18]: Edit Property
+      - generic [ref=e20] [cursor=pointer]: Save
+    - generic [ref=e23]:
+      - generic [ref=e24]:
+        - generic [ref=e25]: Thumbnail Image
+        - img [ref=e31] [cursor=pointer]
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - generic [ref=e36]: Gallery Images
+          - generic [ref=e37] [cursor=pointer]:
+            - generic [ref=e38]: Add Photos
+            - img [ref=e39]
+        - generic [ref=e44] [cursor=pointer]:
+          - img [ref=e45]
+          - generic [ref=e48]: Add
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - generic [ref=e51]: Title
+          - textbox "Property Title" [ref=e52]: Luxury Villa Elite 1768205151970
+        - generic [ref=e53]:
+          - generic [ref=e54]:
+            - generic [ref=e55]: Price
+            - textbox "$350k" [active] [ref=e56]: $890k
+          - generic [ref=e57]:
+            - generic [ref=e58]: Category
+            - generic [ref=e59]:
+              - generic [ref=e61] [cursor=pointer]: Sale
+              - generic [ref=e63] [cursor=pointer]: Rent
+        - generic [ref=e64]:
+          - generic [ref=e65]: Location
+          - textbox "Address or Neighborhood" [ref=e66]: The Pearl, Doha
+        - generic [ref=e67]:
+          - generic [ref=e68]:
+            - generic [ref=e69]: Beds
+            - textbox "3" [ref=e70]: "5"
+          - generic [ref=e71]:
+            - generic [ref=e72]: Baths
+            - textbox "2" [ref=e73]: "6"
+          - generic [ref=e74]:
+            - generic [ref=e75]: Sqft
+            - textbox "1200" [ref=e76]: "450"
+        - generic [ref=e77]:
+          - generic [ref=e78]: Description
+          - textbox "Describe the property..." [ref=e79]: This stunning villa in The Pearl offers the finest in luxury living. With spacious interiors, a private swimming pool, and breathtaking views of the Arabian Gulf, this property is perfect for families seeking an exclusive lifestyle. The villa is finished with high-end materials and features a modern kitchen, large bedrooms with en-suite bathrooms, and a private landscaped garden.
+        - generic [ref=e80]:
+          - generic [ref=e81]: Amenities
+          - textbox "Pool, Gym, Parking..." [ref=e82]: Pool, Gym, Private Parking, Sea View
+```
