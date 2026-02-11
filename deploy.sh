@@ -36,16 +36,24 @@ aws s3api put-bucket-policy --bucket $BUCKET_NAME --policy file://policy-tmp.jso
 rm policy-tmp.json
 
 # 5. Sync files to S3
-# Exclude scripts and other non-essential files
+# Only deploy files required for the public frontend
+echo "📂 Syncing frontend files..."
 aws s3 sync . s3://$BUCKET_NAME \
-    --exclude "deploy.sh" \
-    --exclude "bucket-policy.json" \
-    --exclude "Inspiration/*" \
-    --exclude "Archive.zip" \
-    --exclude ".git/*" \
-    --exclude ".DS_Store" \
-    --exclude "task.md" \
-    --exclude "implementation_plan.md"
+    --exclude "*" \
+    --include "index.html" \
+    --include "properties.html" \
+    --include "property-details.html" \
+    --include "assets/favicon.png" \
+    --include "assets/hero.jpg" \
+    --include "assets/logo.png" \
+    --include "assets/styles/*" \
+    --include "assets/scripts/*" \
+    --include "assets/components/*"
+
+# 6. Create required foldes if they don't exist
+echo "📁 Ensuring required folders exist on S3..."
+aws s3api put-object --bucket $BUCKET_NAME --key assets/props-imgs/ > /dev/null 2>&1 || true
+aws s3api put-object --bucket $BUCKET_NAME --key uploaded_assets/ > /dev/null 2>&1 || true
 
 echo "✅ Deployment complete!"
 echo "🔗 Access your site (Insecure): http://$BUCKET_NAME.s3-website-$REGION.amazonaws.com"
